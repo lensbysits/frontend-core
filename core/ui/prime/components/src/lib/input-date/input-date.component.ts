@@ -29,6 +29,20 @@ export class InputDateComponent extends InputBaseComponent {
         return this._mode;
     }
 
+	public get dateFormat(): string {
+		let format = "YYYY/M/D";
+        switch (this.mode) {
+            case "time":
+                format = "H:mm";
+                break;
+            case "datetime":
+                format = "YYYY/M/D H:mm";
+                break;
+        }
+
+		return format;
+	}
+
     public showButtonBar = false;
     public showTime = false;
     public timeOnly = false;
@@ -41,20 +55,18 @@ export class InputDateComponent extends InputBaseComponent {
             return null;
         }
 
-        let format = "D-M-YYYY";
-        switch (this.mode) {
-            case "time":
-                format = "H:mm";
-                break;
-            case "datetime":
-                format = "D-M-YYYY H:mm";
-                break;
-        }
+        const format = this.dateFormat;
+
         //const date = moment(control.value, format, true); // TODO: localization!
         //if (!date.isValid()) {
         //    return { invalidDate: "Invalid date entered" };
         //}
 		//See: https://moment.github.io/luxon/#/parsing?id=fromformat
+
+		if (typeof(control.value) !== 'string') {
+			return null;
+		}
+
 		const date = DateTime.fromFormat(control.value, format);
 
 		if (!date.isValid) {
