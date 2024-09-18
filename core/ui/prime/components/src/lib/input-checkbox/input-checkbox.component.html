@@ -1,7 +1,16 @@
-<p-checkbox
-	[(ngModel)]="value"
-	[label]="label"
-	[binary]="binary"
-	[id]="id"
-	[disabled]="disabled"
-	[required]="required"></p-checkbox>
+<ng-container *ngIf="isReactiveForm">
+	<p-checkbox
+		[formControl]="control"
+		[label]="label"
+		[binary]="binary"
+		[id]="id"></p-checkbox>
+</ng-container>
+<ng-container *ngIf="!isReactiveForm">
+	<p-checkbox
+		[(ngModel)]="value"
+		[label]="label"
+		[binary]="binary"
+		[id]="id"
+		[disabled]="disabled"
+		[required]="required"></p-checkbox>
+</ng-container>

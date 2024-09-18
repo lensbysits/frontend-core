@@ -11,4 +11,5 @@ export class InputCheckboxComponent extends InputBaseComponent {
 	@Input() id!: string;
 	@Input() label!: string;
 	@Input() binary = true;
+	@Input() public isReactiveForm = false;
 }

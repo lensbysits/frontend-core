@@ -20,6 +20,7 @@ export class DropdownComponent extends InputBaseComponent {
 	@Input() public optionDisabled = "disabled";
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	@Input() public selectedOption!: any;
+	@Input() public autoDisplayFirst = true;
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	@Output() public focusIn: EventEmitter<any> = new EventEmitter();
